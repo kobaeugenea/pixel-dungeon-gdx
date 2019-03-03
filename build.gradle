@@ -21,7 +21,7 @@ allprojects {
         appName = 'pixel-dungeon'
 	    appTitle = 'Pixel Dungeon'
 	    appId = 'com.watabou.pixeldungeon'
-        gdxVersion = '1.3.1'
+        gdxVersion = '1.9.9'
         roboVMVersion = '0.0.14'
     }
 
@@ -117,4 +117,80 @@ project(":PD-classes") {
 
 tasks.eclipse.doLast {
     delete ".project"
+}
+
+idea {
+    project {
+        jdkName = "Android API $androidSdkVersion Platform"
+        languageLevel = '1.6'
+    }
+}
+
+
+idea.workspace.iws.withXml { provider ->
+    def node = provider.asNode().'component'.find{ it.@name == 'RunManager' }
+    def parser = new XmlParser()
+    node?.append(parser.parseText('<configuration name="Android" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">\n' +
+            '      <module name="android" />\n' +
+            '      <option name="DEPLOY" value="true" />\n' +
+            '      <option name="ARTIFACT_NAME" value="" />\n' +
+            '      <option name="PM_INSTALL_OPTIONS" value="" />\n' +
+            '      <option name="ACTIVITY_EXTRA_FLAGS" value="" />\n' +
+            '      <option name="MODE" value="default_activity" />\n' +
+            '      <option name="CLEAR_LOGCAT" value="false" />\n' +
+            '      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />\n' +
+            '      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />\n' +
+            '      <option name="FORCE_STOP_RUNNING_APP" value="true" />\n' +
+            '      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />\n' +
+            '      <option name="USE_LAST_SELECTED_DEVICE" value="false" />\n' +
+            '      <option name="PREFERRED_AVD" value="" />\n' +
+            '      <option name="DEBUGGER_TYPE" value="Java" />\n' +
+            '      <Java />\n' +
+            '      <Profilers>\n' +
+            '        <option name="ADVANCED_PROFILING_ENABLED" value="false" />\n' +
+            '      </Profilers>\n' +
+            '      <option name="DEEP_LINK" value="" />\n' +
+            '      <option name="ACTIVITY_CLASS" value="" />\n' +
+            '      <method v="2">\n' +
+            '        <option name="Gradle.BeforeRunTask" enabled="true" tasks="android:installDebug" externalProjectPath="$PROJECT_DIR$" vmOptions="" scriptParameters="" />\n' +
+            '      </method>\n' +
+            '</configuration>'))
+    node?.append(parser.parseText('<configuration name="Desktop" type="GradleRunConfiguration" factoryName="Gradle">\n' +
+            '      <ExternalSystemSettings>\n' +
+            '        <option name="executionName" />\n' +
+            '        <option name="externalProjectPath" value="$PROJECT_DIR$" />\n' +
+            '        <option name="externalSystemIdString" value="GRADLE" />\n' +
+            '        <option name="scriptParameters" value="" />\n' +
+            '        <option name="taskDescriptions">\n' +
+            '          <list />\n' +
+            '        </option>\n' +
+            '        <option name="taskNames">\n' +
+            '          <list>\n' +
+            '            <option value="desktop:run" />\n' +
+            '          </list>\n' +
+            '        </option>\n' +
+            '        <option name="vmOptions" value="" />\n' +
+            '      </ExternalSystemSettings>\n' +
+            '      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>\n' +
+            '      <method v="2" />\n' +
+            '</configuration>'))
+    node?.append(parser.parseText('<configuration name="Update dependencies" type="GradleRunConfiguration" factoryName="Gradle">\n' +
+            '      <ExternalSystemSettings>\n' +
+            '        <option name="executionName" />\n' +
+            '        <option name="externalProjectPath" value="$PROJECT_DIR$" />\n' +
+            '        <option name="externalSystemIdString" value="GRADLE" />\n' +
+            '        <option name="scriptParameters" value="" />\n' +
+            '        <option name="taskDescriptions">\n' +
+            '          <list />\n' +
+            '        </option>\n' +
+            '        <option name="taskNames">\n' +
+            '          <list>\n' +
+            '            <option value="idea" />\n' +
+            '          </list>\n' +
+            '        </option>\n' +
+            '        <option name="vmOptions" value="" />\n' +
+            '      </ExternalSystemSettings>\n' +
+            '      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>\n' +
+            '      <method v="2" />\n' +
+            '</configuration>'))
 }

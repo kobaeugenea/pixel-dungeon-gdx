@@ -140,12 +140,12 @@ public class PixelDungeon extends Game {
 		if (value) {
 			prefs.put(Preferences.KEY_WINDOW_FULLSCREEN, true);
 
-			Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width, Gdx.graphics.getDesktopDisplayMode().height, true);
+			Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
 		} else {
 			int w = prefs.getInt(Preferences.KEY_WINDOW_WIDTH, Preferences.DEFAULT_WINDOW_WIDTH);
 			int h = prefs.getInt(Preferences.KEY_WINDOW_HEIGHT, Preferences.DEFAULT_WINDOW_HEIGHT);
 			prefs.put(Preferences.KEY_WINDOW_FULLSCREEN, false);
-			Gdx.graphics.setDisplayMode(w, h, false);
+			Gdx.graphics.setWindowedMode(w, h);
 		}
 	}
 

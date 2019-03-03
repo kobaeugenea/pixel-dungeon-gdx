@@ -1,6 +1,6 @@
 android {
     buildToolsVersion "20.0.0"
-    compileSdkVersion 19
+    compileSdkVersion androidSdkVersion
 	defaultConfig {
 		applicationId appId
 		versionCode project.ext.versionCode
@@ -117,6 +117,7 @@ idea {
                     facet(type: "android", name: "Android") {
                         configuration {
                             option(name: "UPDATE_PROPERTY_FILES", value:"true")
+                            option(name: "APK_PATH", value:"/build/outputs/apk/android-debug.apk")
                         }
                     }
                 }

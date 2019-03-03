@@ -83,7 +83,7 @@ public abstract class Game implements ApplicationListener {
 			public void onSignal( PDInputProcessor.Key key ) {
 				if (key.pressed && PDInputProcessor.modifier && key.code == Input.Keys.ENTER) {
 					if (!Gdx.graphics.isFullscreen()) {
-						Gdx.graphics.setDisplayMode(Gdx.graphics.getDesktopDisplayMode().width, Gdx.graphics.getDesktopDisplayMode().height, true);
+						Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
 					} else {
 
 					}
