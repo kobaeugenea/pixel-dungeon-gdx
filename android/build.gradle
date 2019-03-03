@@ -1,6 +1,6 @@
 android {
     buildToolsVersion "20.0.0"
-    compileSdkVersion androidSdkVersion
+    compileSdkVersion "android-$androidSdkVersion"
 	defaultConfig {
 		applicationId appId
 		versionCode project.ext.versionCode
