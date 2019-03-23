@@ -3,17 +3,6 @@ pixel-dungeon-gdx
 
 GDX port of the awesome [Pixel Dungeon](https://github.com/watabou/pixel-dungeon)
 
-Import project to IDEA
-----------
-Before import execute `gradlew idea` in project directory.
-IDEA Run Configurations:
-* 'Android' - run and debug for android version
-* 'Desktop' - run and debug for desktop version
-* 'Update dependencies' - update gradle dependencies for IDEA
-
-If you lost Run Configuration you can restore it by deleting 'pixel-dungeon-gdx.iws' file and run `gradlew idea` in 
-the project directory.
-
 Quickstart
 ----------
 

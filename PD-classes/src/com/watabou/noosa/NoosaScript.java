@@ -36,7 +36,10 @@ public class NoosaScript extends Script {
 	public Uniform uColorA;
 	public Attribute aXY;
 	public Attribute aUV;
-	
+
+	private int verticesBuffer;
+	private int indicesBuffer;
+
 	private Camera lastCamera;
 	
 	public NoosaScript() {
@@ -51,7 +54,9 @@ public class NoosaScript extends Script {
 		uColorA	= uniform( "uColorA" );
 		aXY		= attribute( "aXYZW" );
 		aUV		= attribute( "aUV" );
-		
+
+        verticesBuffer = Gdx.gl.glGenBuffer();
+        indicesBuffer = Gdx.gl.glGenBuffer();
 	}
 	
 	@Override
@@ -65,47 +70,28 @@ public class NoosaScript extends Script {
 	}
 
 	public void drawElements( FloatBuffer vertices, ShortBuffer indices, int size ) {
-		
-		vertices.position( 0 );
-		aXY.vertexPointer( 2, 4, vertices );
-		
-		vertices.position( 2 );
-		aUV.vertexPointer( 2, 4, vertices );
-		
-		Gdx.gl.glDrawElements( GL20.GL_TRIANGLES, size, GL20.GL_UNSIGNED_SHORT, indices );
-		
+		vertices.position(0);
+		Gdx.gl.glBindBuffer(GL20.GL_ARRAY_BUFFER, verticesBuffer);
+		Gdx.gl.glBufferData(GL20.GL_ARRAY_BUFFER, vertices.capacity() * Float.SIZE / 8, vertices, GL20.GL_STATIC_DRAW);
+
+		aXY.vertexPointer( 2, 4, 0 );
+		aUV.vertexPointer( 2, 4, 8 );
+
+
+		Gdx.gl.glBindBuffer(GL20.GL_ELEMENT_ARRAY_BUFFER, indicesBuffer);
+		Gdx.gl.glBufferData(GL20.GL_ELEMENT_ARRAY_BUFFER, indices.capacity() * Short.SIZE / 8, indices, GL20.GL_STATIC_DRAW);
+		Gdx.gl.glDrawElements( GL20.GL_TRIANGLES, size, GL20.GL_UNSIGNED_SHORT,  0);
 	}
 	
 	public void drawQuad( FloatBuffer vertices ) {
-		
-		vertices.position( 0 );
-		aXY.vertexPointer( 2, 4, vertices );
-		
-		vertices.position( 2 );
-		aUV.vertexPointer( 2, 4, vertices );
-
-		Gdx.gl.glDrawElements( GL20.GL_TRIANGLES, Quad.SIZE, GL20.GL_UNSIGNED_SHORT, Quad.INDICES_1 );
-		
+        drawElements(vertices, Quad.INDICES_1, Quad.SIZE);
 	}
 	
 	public void drawQuadSet( FloatBuffer vertices, int size ) {
-		
 		if (size == 0) {
 			return;
 		}
-		
-		vertices.position( 0 );
-		aXY.vertexPointer( 2, 4, vertices );
-		
-		vertices.position( 2 );
-		aUV.vertexPointer( 2, 4, vertices );
-
-		Gdx.gl.glDrawElements(
-			GL20.GL_TRIANGLES,
-			Quad.SIZE * size,
-			GL20.GL_UNSIGNED_SHORT,
-			Quad.getIndices( size ) );
-		
+		drawElements(vertices, Quad.getIndices(size), Quad.SIZE * size);
 	}
 	
 	public void lighting( float rm, float gm, float bm, float am, float ra, float ga, float ba, float aa ) {

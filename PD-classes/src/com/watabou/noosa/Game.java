@@ -16,9 +16,7 @@
  */
 package com.watabou.noosa;
 
-import com.badlogic.gdx.ApplicationListener;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.reflect.ClassReflection;
@@ -29,6 +27,8 @@ import com.watabou.noosa.audio.Music;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Signal;
 import com.watabou.utils.SystemTime;
+import com.watabou.utils.WebGLFileInputStream;
+import com.watabou.utils.WebGLFileOutputStream;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -240,20 +240,32 @@ public abstract class Game implements ApplicationListener {
 	}
 
 	public boolean deleteFile(String fileName) {
-		final FileHandle fh = Gdx.files.external(basePath != null ? basePath + fileName : fileName);
-		return fh.exists() && fh.delete();
+		if(Gdx.app.getType() != Application.ApplicationType.WebGL) {
+			final FileHandle fh = Gdx.files.external(basePath != null ? basePath + fileName : fileName);
+			return fh.exists() && fh.delete();
+		} else {
+			return Gdx.app.getPreferences("com.watabou.pixeldungeon").putString(fileName, null) != null;
+		}
 	}
 
 	public InputStream openFileInput(String fileName) throws IOException {
-		final FileHandle fh = Gdx.files.external(basePath != null ? basePath + fileName : fileName);
-		if (!fh.exists())
-			throw new IOException("File " + fileName + " doesn't exist");
-		return fh.read();
+		if(Gdx.app.getType() != Application.ApplicationType.WebGL) {
+			final FileHandle fh = Gdx.files.external(basePath != null ? basePath + fileName : fileName);
+			if (!fh.exists())
+				throw new IOException("File " + fileName + " doesn't exist");
+			return fh.read();
+		} else{
+			return new WebGLFileInputStream(fileName);
+		}
 	}
 
 	public OutputStream openFileOutput(String fileName) {
-		final FileHandle fh = Gdx.files.external(basePath != null ? basePath + fileName : fileName);
-		return fh.write(false);
+		if(Gdx.app.getType() != Application.ApplicationType.WebGL) {
+			final FileHandle fh = Gdx.files.external(basePath != null ? basePath + fileName : fileName);
+			return fh.write(false);
+		} else{
+			return new WebGLFileOutputStream(fileName);
+		}
 	}
 
 	public void finish() {

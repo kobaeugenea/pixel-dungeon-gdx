@@ -46,19 +46,19 @@ public class WndInfoMob extends WndTitledMessage {
 		
 		switch (mob.state) {
 		case SLEEPING:
-			builder.append( String.format( TXT_SLEEPNIG, mob.name ) );
+			builder.append( Utils.format( TXT_SLEEPNIG, mob.name ) );
 			break;
 		case HUNTING:
-			builder.append( String.format( TXT_HUNTING, mob.name ) );
+			builder.append( Utils.format( TXT_HUNTING, mob.name ) );
 			break;
 		case WANDERING:
-			builder.append( String.format( TXT_WANDERING, mob.name ) );
+			builder.append( Utils.format( TXT_WANDERING, mob.name ) );
 			break;
 		case FLEEING:
-			builder.append( String.format( TXT_FLEEING, mob.name ) );
+			builder.append( Utils.format( TXT_FLEEING, mob.name ) );
 			break;
 		case PASSIVE:
-			builder.append( String.format( TXT_PASSIVE, mob.name ) );
+			builder.append( Utils.format( TXT_PASSIVE, mob.name ) );
 			break;
 		}
 		

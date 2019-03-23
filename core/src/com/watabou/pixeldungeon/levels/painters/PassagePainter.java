@@ -28,8 +28,9 @@ public class PassagePainter extends Painter {
 
 	private static int pasWidth;
 	private static int pasHeight;
-	
-	public static void paint( Level level, Room room ) {
+
+	@Override
+	public void paint( Level level, Room room ) {
 		
 		pasWidth = room.width() - 2;
 		pasHeight = room.height() - 2;

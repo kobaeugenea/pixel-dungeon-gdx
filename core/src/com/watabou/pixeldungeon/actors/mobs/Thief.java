@@ -148,7 +148,7 @@ public class Thief extends Mob {
 			"these crazy thieves and bandits have forgotten who they are and why they steal.";
 		
 		if (item != null) {
-			desc += String.format( TXT_CARRIES, Utils.capitalize( this.name ), item.name() );
+			desc += Utils.format( TXT_CARRIES, Utils.capitalize( this.name ), item.name() );
 		}
 		
 		return desc;

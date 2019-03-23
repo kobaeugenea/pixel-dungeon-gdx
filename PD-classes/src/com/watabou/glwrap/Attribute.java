@@ -17,8 +17,6 @@
 
 package com.watabou.glwrap;
 
-import java.nio.FloatBuffer;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 
@@ -42,7 +40,7 @@ public class Attribute {
 		Gdx.gl.glDisableVertexAttribArray( location );
 	}
 	
-	public void vertexPointer( int size, int stride, FloatBuffer ptr ) {
+	public void vertexPointer( int size, int stride, int ptr ) {
 		Gdx.gl.glVertexAttribPointer( location, size, GL20.GL_FLOAT, false, stride * Float.SIZE / 8, ptr );
 	}
 }

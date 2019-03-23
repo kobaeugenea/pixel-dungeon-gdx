@@ -2,4 +2,43 @@
 <!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit trunk//EN" "http://google-web-toolkit.googlecode.com/svn/trunk/distro-source/core/src/gwt-module.dtd">
 <module>
 	<source path="com/watabou/pixeldungeon" />
+
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.noosa.NoosaScript"/>
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.noosa.particles"/>
+
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.actors"/>
+	<extend-configuration-property name="gdx.reflect.exclude" value="com.watabou.pixeldungeon.actors.hero.Belongings"/>
+	<extend-configuration-property name="gdx.reflect.exclude" value="com.watabou.pixeldungeon.actors.hero.HeroAction"/>
+	<extend-configuration-property name="gdx.reflect.exclude" value="com.watabou.pixeldungeon.actors.hero.HeroClass"/>
+	<extend-configuration-property name="gdx.reflect.exclude" value="com.watabou.pixeldungeon.actors.hero.HeroSubClass"/>
+	<extend-configuration-property name="gdx.reflect.exclude" value="com.watabou.pixeldungeon.actors.Actor"/>
+	<extend-configuration-property name="gdx.reflect.exclude" value="com.watabou.pixeldungeon.actors.Char"/>
+
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.effects"/>
+
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.items"/>
+	<extend-configuration-property name="gdx.reflect.exclude" value="com.watabou.pixeldungeon.items.armor.ClassArmor"/>
+	<extend-configuration-property name="gdx.reflect.exclude" value="com.watabou.pixeldungeon.items.scrolls.InventoryScroll"/>
+	<extend-configuration-property name="gdx.reflect.exclude" value="com.watabou.pixeldungeon.items.Generator"/>
+	<extend-configuration-property name="gdx.reflect.exclude" value="com.watabou.pixeldungeon.items.EquipableItem"/>
+	<extend-configuration-property name="gdx.reflect.exclude" value="com.watabou.pixeldungeon.items.ItemStatusHandler"/>
+
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.levels.CavesBossLevel"/>
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.levels.CavesLevel"/>
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.levels.CityBossLevel"/>
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.levels.CityLevel"/>
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.levels.DeadEndLevel"/>
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.levels.HallsBossLevel"/>
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.levels.HallsLevel"/>
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.levels.LastLevel"/>
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.levels.LastShopLevel"/>
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.levels.PrisonBossLevel"/>
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.levels.PrisonLevel"/>
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.levels.SewerBossLevel"/>
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.levels.SewerLevel"/>
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.levels.Room"/>
+
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.plants"/>
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.scenes"/>
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.sprites"/>
 </module>

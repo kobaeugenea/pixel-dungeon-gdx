@@ -16,20 +16,18 @@
  */
 package com.watabou.noosa;
 
-import java.util.ArrayList;
-import java.util.regex.Pattern;
-
 import com.watabou.glwrap.Quad;
 import com.watabou.utils.PointF;
-
 import com.watabou.utils.RectF;
+
+import java.util.ArrayList;
 
 public class BitmapTextMultiline extends BitmapText {
 
 	public int maxWidth = Integer.MAX_VALUE;
 	
-	protected static final Pattern PARAGRAPH	= Pattern.compile( "\n" );
-	protected static final Pattern WORD			= Pattern.compile( "\\s+" );
+	protected static final String PARAGRAPH	= "\n";
+	protected static final String WORD		= "\\s+";
 	
 	protected float spaceSize;
 	
@@ -60,14 +58,14 @@ public class BitmapTextMultiline extends BitmapText {
 		// Word size
 		PointF metrics = new PointF();
 		
-		String paragraphs[] = PARAGRAPH.split( text );
+		String paragraphs[] = text.split(PARAGRAPH);
 		
 		// Current character (used in masking)
 		int pos = 0;
 		
 		for (int i=0; i < paragraphs.length; i++) {
 			
-			String[] words = WORD.split( paragraphs[i] );
+			String[] words = paragraphs[i].split(WORD);
 			
 			for (int j=0; j < words.length; j++) {
 				
@@ -156,11 +154,11 @@ public class BitmapTextMultiline extends BitmapText {
 		
 		PointF metrics = new PointF();
 		
-		String paragraphs[] = PARAGRAPH.split( text );
+		String paragraphs[] = text.split(PARAGRAPH);
 		
 		for (int i=0; i < paragraphs.length; i++) {
 			
-			String[] words = WORD.split( paragraphs[i] );
+			String[] words = paragraphs[i].split(WORD);
 			
 			for (int j=0; j < words.length; j++) {
 				
@@ -261,11 +259,11 @@ public class BitmapTextMultiline extends BitmapText {
 			curLine = new StringBuilder();
 			curLineWidth = 0;
 			
-			String paragraphs[] = PARAGRAPH.split( text );
+			String paragraphs[] = text.split(PARAGRAPH);
 			
 			for (int i=0; i < paragraphs.length; i++) {
 				
-				String[] words = WORD.split( paragraphs[i] );
+				String[] words = paragraphs[i].split(WORD);
 				
 				for (int j=0; j < words.length; j++) {
 					
