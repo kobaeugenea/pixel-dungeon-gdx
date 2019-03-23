@@ -6,6 +6,9 @@
 	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.noosa.NoosaScript"/>
 	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.noosa.particles"/>
 
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.Journal"/>
+	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.Rankings"/>
+	
 	<extend-configuration-property name="gdx.reflect.include" value="com.watabou.pixeldungeon.actors"/>
 	<extend-configuration-property name="gdx.reflect.exclude" value="com.watabou.pixeldungeon.actors.hero.Belongings"/>
 	<extend-configuration-property name="gdx.reflect.exclude" value="com.watabou.pixeldungeon.actors.hero.HeroAction"/>
