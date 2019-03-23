@@ -173,7 +173,7 @@ public class Window extends Group implements Signal.Listener<PDInputProcessor.Ke
 				lastMatch = HIGHLIGHTER.getLastIndex();
 			}
 			
-			this.text = stripped.replaceAll(HIGHLIGHTER_TEXT, "$1");
+			this.text = text.replaceAll(HIGHLIGHTER_TEXT, "$1");
 		}
 		
 		public boolean[] inverted() {

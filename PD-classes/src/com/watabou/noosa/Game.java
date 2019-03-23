@@ -240,11 +240,19 @@ public abstract class Game implements ApplicationListener {
 	}
 
 	public boolean deleteFile(String fileName) {
-		if(Gdx.app.getType() != Application.ApplicationType.WebGL) {
+		if (Gdx.app.getType() != Application.ApplicationType.WebGL) {
 			final FileHandle fh = Gdx.files.external(basePath != null ? basePath + fileName : fileName);
 			return fh.exists() && fh.delete();
 		} else {
-			return Gdx.app.getPreferences("com.watabou.pixeldungeon").putString(fileName, null) != null;
+			Preferences preferences = Gdx.app.getPreferences("com.watabou.pixeldungeon");
+			String save = preferences.getString(fileName);
+			if (save == null || save.equals("")) {
+				return false;
+			} else {
+				preferences.remove(fileName);
+				preferences.flush();
+				return true;
+			}
 		}
 	}
 
