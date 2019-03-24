@@ -21,6 +21,8 @@ import java.util.Locale;
 
 public class Utils {
 
+	public static final int REGEXP_GLOBAL_FLAG = 0; //required for compatibility with web-version
+
 	public static String capitalize( String str ) {
 		return Character.toUpperCase( str.charAt( 0 ) ) + str.substring( 1 );
 	}

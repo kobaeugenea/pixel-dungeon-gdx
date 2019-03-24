@@ -29,6 +29,7 @@ import com.watabou.noosa.NinePatch;
 import com.watabou.noosa.TouchArea;
 import com.watabou.pixeldungeon.Chrome;
 import com.watabou.pixeldungeon.scenes.PixelScene;
+import com.watabou.pixeldungeon.utils.Utils;
 import com.watabou.utils.Signal;
 
 public class Window extends Group implements Signal.Listener<PDInputProcessor.Key> {
@@ -149,17 +150,18 @@ public class Window extends Group implements Signal.Listener<PDInputProcessor.Ke
 	}
 	
 	protected static class Highlighter {
-		
-		private static final Pattern HIGHLIGHTER	= Pattern.compile( "_(.*?)_" );
-		private static final Pattern STRIPPER		= Pattern.compile( "[ \n]" );
+
+		private static final String HIGHLIGHTER_TEXT = "_(.*?)_";
+		private static final String STRIPPER_TEXT = "[ \n]";
+		private static final Pattern HIGHLIGHTER = Pattern.compile(HIGHLIGHTER_TEXT, Utils.REGEXP_GLOBAL_FLAG);
 		
 		public String text;
 		
 		public boolean[] mask;
 		
 		public Highlighter( String text ) {
-			
-			String stripped = STRIPPER.matcher( text ).replaceAll( "" );
+
+			String stripped = text.replaceAll(STRIPPER_TEXT, "");
 			mask = new boolean[stripped.length()];
 			
 			Matcher m = HIGHLIGHTER.matcher( stripped );
@@ -176,15 +178,8 @@ public class Window extends Group implements Signal.Listener<PDInputProcessor.Ke
 				pos += groupLen;
 				lastMatch = m.end();
 			}
-			
-			m.reset( text );
-			StringBuffer sb = new StringBuffer();
-			while (m.find()) {
-				m.appendReplacement( sb, m.group( 1 ) );
-			}
-			m.appendTail( sb );
-			
-			this.text = sb.toString();
+
+			this.text = text.replaceAll(HIGHLIGHTER_TEXT, "$1");
 		}
 		
 		public boolean[] inverted() {
